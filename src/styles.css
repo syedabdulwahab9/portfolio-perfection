@@ -346,3 +346,7 @@ a:focus-visible { outline: 2px solid var(--volt); outline-offset: 6px; }
 .hero-heat::before { top: 0; bottom: 0; width: 160%; background: linear-gradient(90deg, transparent 0%, oklch(0 0 0 / 35%) 14%, oklch(0 0 0 / 78%) 30%, oklch(0 0 0 / 92%) 50%, oklch(0 0 0 / 78%) 70%, oklch(0 0 0 / 35%) 86%, transparent 100%); -webkit-mask-image: none; mask-image: none; filter: blur(24px); transform: translate3d(65%, 0, 0); }
 .hero.is-ready .hero-heat::before { animation: dark-flow 2.2s cubic-bezier(.45,.05,.55,.95) both; }
 @keyframes dark-flow { 0% { transform: translate3d(65%, 0, 0); opacity: 0; } 15% { opacity: 1; } 80% { opacity: .9; } 100% { transform: translate3d(-105%, 0, 0); opacity: 0; } }
+/* Thin, soft dark flow; runs without waiting on scripts so it plays on any host. */
+.hero-heat::before { width: 70%; filter: blur(14px); background: linear-gradient(90deg, transparent 0%, oklch(0 0 0 / 40%) 25%, oklch(0 0 0 / 85%) 50%, oklch(0 0 0 / 40%) 75%, transparent 100%); animation: dark-flow-thin 2.2s .15s cubic-bezier(.45,.05,.55,.95) both; }
+.hero.is-ready .hero-heat::before { animation: dark-flow-thin 2.2s .15s cubic-bezier(.45,.05,.55,.95) both; }
+@keyframes dark-flow-thin { 0% { transform: translate3d(150%, 0, 0); opacity: 0; } 15% { opacity: 1; } 80% { opacity: .9; } 100% { transform: translate3d(-150%, 0, 0); opacity: 0; } }
