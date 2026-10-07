@@ -40,8 +40,9 @@ a { color: inherit; text-decoration: none; }
 
 .hero { display: grid; grid-template-rows: auto 1fr auto; position: relative; min-height: 740px; height: min(920px, 94svh); overflow: hidden; isolation: isolate; background: var(--ink); }
 .hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, oklch(0.01 0 0 / 94%) 0%, oklch(0.01 0 0 / 55%) 40%, oklch(0.01 0 0 / 5%) 66%), linear-gradient(0deg, oklch(0.01 0 0 / 70%) 0%, transparent 26%); }
-.hero-image { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: contain; object-position: right top; filter: contrast(1.05) saturate(1.06) brightness(.98); animation: hero-image-in 2.4s cubic-bezier(.16,1,.3,1) both; will-change: opacity, transform, filter; }
-@keyframes hero-image-in { 0% { opacity: 0; transform: translate3d(2%, 14px, 0) scale(1.05); filter: blur(14px) contrast(1.05) saturate(1.06) brightness(.9); } 60% { opacity: 1; filter: blur(1px) contrast(1.05) saturate(1.06) brightness(.98); } 100% { opacity: 1; transform: none; filter: blur(0) contrast(1.05) saturate(1.06) brightness(.98); } }
+.hero-image { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: contain; object-position: right top; filter: contrast(1.05) saturate(1.06) brightness(.98); animation: hero-image-in 3.4s cubic-bezier(.22,1,.36,1) both; animation-play-state: paused; will-change: opacity, transform, filter; }
+.hero-image.is-loaded { animation-play-state: running; }
+@keyframes hero-image-in { 0% { opacity: 0; transform: translate3d(2%, 18px, 0) scale(1.06); filter: blur(16px) contrast(1.05) saturate(1.06) brightness(.88); } 30% { opacity: .55; } 60% { opacity: 1; transform: translate3d(.4%, 3px, 0) scale(1.01); filter: blur(1.5px) contrast(1.05) saturate(1.06) brightness(.97); } 100% { opacity: 1; transform: none; filter: blur(0) contrast(1.05) saturate(1.06) brightness(.98); } }
 
 .topbar { display: flex; justify-content: center; align-items: center; padding: 1.2rem 3.5vw; text-transform: uppercase; font-size: .72rem; font-weight: 700; position: relative; z-index: 3; }
 /* SAW is an unframed top-left wordmark. */
@@ -288,7 +289,7 @@ a:focus-visible { outline: 2px solid var(--volt); outline-offset: 6px; }
 .hero-footer { animation: content-arrive .9s 1s ease-out both; }
 /* Portrait reveals once its pixels are ready; ember bubbles carry the heat without side lighting. */
 .hero-bubbles { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-.hero-bubbles i { position: absolute; width: 1px; height: 1px; border-radius: 50%; background: var(--bubble-fill); box-shadow: 0 0 0 .25px var(--bubble-rim), 0 0 1.5px var(--bubble-glow); animation: bubble-drift 6s linear infinite; will-change: transform, opacity; }
+.hero-bubbles i { position: absolute; width: 1px; height: 1px; border-radius: 50%; background: var(--bubble-fill); box-shadow: 0 0 0 .25px var(--bubble-rim), 0 0 1.5px var(--bubble-glow); animation: bubble-drift 18s ease-in-out infinite; will-change: transform, opacity; }
 .hero-bubbles i:nth-child(3n) { width: .75px; height: .75px; }
 .hero-bubbles i:nth-child(4n) { width: 1.25px; height: 1.25px; }
 .hero-bubbles i:nth-child(1) { left: 7%; top: 18%; animation-delay: -2s; }
@@ -315,7 +316,7 @@ a:focus-visible { outline: 2px solid var(--volt); outline-offset: 6px; }
 .hero-bubbles i:nth-child(22) { left: 82%; top: 38%; animation-delay: -1s; animation-duration: 7s; }
 .hero-bubbles i:nth-child(23) { left: 27%; top: 93%; animation-delay: -4s; animation-duration: 8s; }
 .hero-bubbles i:nth-child(24) { left: 93%; top: 90%; animation-delay: -5s; animation-duration: 9s; }
-@keyframes bubble-drift { 0% { transform: translate3d(0, 42px, 0); opacity: 0; } 12% { opacity: .95; } 50% { transform: translate3d(-10px, -32px, 0); opacity: .9; } 88% { opacity: .8; } 100% { transform: translate3d(16px, -150px, 0); opacity: 0; } }
+@keyframes bubble-drift { 0% { transform: translate3d(0, 34px, 0); opacity: 0; } 15% { opacity: .9; } 50% { transform: translate3d(-7px, -60px, 0); opacity: .8; } 85% { opacity: .65; } 100% { transform: translate3d(9px, -160px, 0); opacity: 0; } }
 .cv-download-error a { text-decoration: underline; color: var(--volt); }
 @media (max-width: 700px) { .contact-row { gap: .5rem; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
