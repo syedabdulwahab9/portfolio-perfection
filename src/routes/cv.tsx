@@ -7,9 +7,9 @@ import { cvProfile } from "@/data/cv";
 export const Route = createFileRoute("/cv")({
   head: () => ({
     meta: [
-      { title: "Syed Abdul Wahab - Complete Portfolio · CV" },
+      { title: "Syed Abdul Wahab - My Portfolio · CV" },
       { name: "description", content: "Professional CV of Syed Abdul Wahab, a Python Developer and digital builder." },
-      { property: "og:title", content: "Syed Abdul Wahab - Complete Portfolio · CV" },
+      { property: "og:title", content: "Syed Abdul Wahab - My Portfolio · CV" },
       { property: "og:description", content: "Python development, backend technologies, selected projects, skills and education." },
       { property: "og:type", content: "profile" },
       { name: "twitter:card", content: "summary" },
