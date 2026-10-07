@@ -78,10 +78,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Syed Abdul Wahab - Complete Portfolio" },
+      { title: "Syed Abdul Wahab - My Portfolio" },
       { name: "description", content: "Python development, thoughtful design and digital products by Syed Abdul Wahab." },
       { name: "author", content: "Syed Abdul Wahab" },
-      { property: "og:title", content: "Syed Abdul Wahab - Complete Portfolio" },
+      { property: "og:title", content: "Syed Abdul Wahab - My Portfolio" },
       { property: "og:description", content: "Python development, thoughtful design and digital products by Syed Abdul Wahab." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

@@ -17,9 +17,9 @@ const sawaaPreview = sawaaPreviewImg;
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Syed Abdul Wahab - Complete Portfolio" },
+      { title: "Syed Abdul Wahab - My Portfolio" },
       { name: "description", content: "The bold portfolio of Syed Abdul Wahab, creator of Raah E Hidayath and Sawaa Enterprise." },
-      { property: "og:title", content: "Syed Abdul Wahab - Complete Portfolio" },
+      { property: "og:title", content: "Syed Abdul Wahab - My Portfolio" },
       { property: "og:description", content: "Bold digital work, thoughtful systems, and sharp creative direction by Syed Abdul Wahab." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
