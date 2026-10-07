@@ -40,9 +40,14 @@ a { color: inherit; text-decoration: none; }
 
 .hero { display: grid; grid-template-rows: auto 1fr auto; position: relative; min-height: 740px; height: min(920px, 94svh); overflow: hidden; isolation: isolate; background: var(--ink); }
 .hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, oklch(0.01 0 0 / 94%) 0%, oklch(0.01 0 0 / 55%) 40%, oklch(0.01 0 0 / 5%) 66%), linear-gradient(0deg, oklch(0.01 0 0 / 70%) 0%, transparent 26%); }
-.hero-image { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: contain; object-position: right top; filter: contrast(1.05) saturate(1.06) brightness(.98); animation: hero-image-in 3.4s cubic-bezier(.22,1,.36,1) both; animation-play-state: paused; will-change: opacity, transform, filter; }
+.hero-image-frame { display: contents; }
+.hero-image { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: contain; object-position: right top; filter: contrast(1.05) saturate(1.06) brightness(.98); animation: hero-image-in 1.1s cubic-bezier(.16,1,.3,1) both; animation-play-state: paused; will-change: opacity, transform, filter; }
 .hero-image.is-loaded { animation-play-state: running; }
-@keyframes hero-image-in { 0% { opacity: 0; transform: translate3d(2%, 18px, 0) scale(1.06); filter: blur(16px) contrast(1.05) saturate(1.06) brightness(.88); } 30% { opacity: .55; } 60% { opacity: 1; transform: translate3d(.4%, 3px, 0) scale(1.01); filter: blur(1.5px) contrast(1.05) saturate(1.06) brightness(.97); } 100% { opacity: 1; transform: none; filter: blur(0) contrast(1.05) saturate(1.06) brightness(.98); } }
+@keyframes hero-image-in { 0% { opacity: 0; transform: translate3d(3%, 12px, 0) scale(1.06); clip-path: inset(0 0 0 100%); filter: blur(5px) contrast(1.12) saturate(1.12) brightness(.9); } 26% { opacity: 1; } 70% { clip-path: inset(0 0 0 0); filter: blur(.5px) contrast(1.08) saturate(1.09) brightness(.96); } 100% { opacity: 1; transform: none; clip-path: inset(0 0 0 0); filter: blur(0) contrast(1.05) saturate(1.06) brightness(.98); } }
+.hero-heat { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.hero-heat::before { content: ""; position: absolute; top: -12%; bottom: -12%; left: 0; width: 22%; background: linear-gradient(90deg, transparent, oklch(.65 .24 35 / 22%) 45%, var(--hot) 80%, var(--volt) 97%); opacity: 0; transform: translate3d(-130%, 0, 0); will-change: transform, opacity; }
+.hero.is-ready .hero-heat::before { animation: heat-sweep .95s cubic-bezier(.2,.75,.25,1) both; }
+@keyframes heat-sweep { 0% { transform: translate3d(-130%, 0, 0); opacity: 0; } 18% { opacity: .7; } 100% { transform: translate3d(480%, 0, 0); opacity: 0; } }
 
 .topbar { display: flex; justify-content: center; align-items: center; padding: 1.2rem 3.5vw; text-transform: uppercase; font-size: .72rem; font-weight: 700; position: relative; z-index: 3; }
 /* SAW is an unframed top-left wordmark. */
@@ -85,6 +90,7 @@ a { color: inherit; text-decoration: none; }
 .project { grid-column: 1 / span 8; }
 .project-offset { grid-column: 5 / -1; }
 .project-image-wrap { display: block; position: relative; overflow: hidden; border: 2px solid var(--ink); background: var(--ink); aspect-ratio: 16 / 10; }
+.project-image-wrap picture { display: block; width: 100%; height: 100%; }
 .project-image-wrap img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; filter: saturate(.9) contrast(1.04); transition: transform .55s ease, filter .55s ease; }
 .project:hover img { transform: scale(1.02); filter: saturate(1.1) contrast(1.08); }
 .project-stamp { position: absolute; right: 0; bottom: 0; display: flex; align-items: center; gap: 1rem; padding: .8rem 1rem; background: var(--volt); color: var(--ink); font-size: .68rem; font-weight: 800; text-transform: uppercase; }
