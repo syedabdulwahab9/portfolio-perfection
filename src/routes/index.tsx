@@ -63,7 +63,7 @@ function Portfolio() {
   return (
     <main className="portfolio-shell" id="top">
       <section className="hero" aria-label="Syed Abdul Wahab introduction">
-        <div className="hero-bubbles" aria-hidden="true">{Array.from({ length: 12 }, (_, index) => <i key={index} />)}</div>
+        <div className="hero-bubbles" aria-hidden="true">{Array.from({ length: 24 }, (_, index) => <i key={index} />)}</div>
         <img ref={portraitRef} className="hero-image" src={portrait} alt="Syed Abdul Wahab in a sharply lit editorial portrait" width={1145} height={768} fetchPriority="high" onLoad={(event) => event.currentTarget.classList.add("is-loaded")} />
         <div className="topbar" aria-hidden="true" />
         <div className="hero-dark-accent" aria-hidden="true"><i /><i /><i /></div>
