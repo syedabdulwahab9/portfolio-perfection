@@ -26,8 +26,8 @@
   --heat-edge: oklch(.48 .18 30 / 40%); --heat-core: oklch(.25 .08 28 / 65%); --heat-shadow: oklch(.015 0 0 / 80%); --font-contact: "Barlow Condensed", sans-serif; --name-shadow: 5px 5px 0 var(--ink), 9px 9px 0 oklch(.65 .24 35 / 40%), 0 0 60px oklch(.65 .24 35 / 22%);
   --portrait-mark: oklch(0.98 0 0 / 75%); --wordmark-shadow: 3px 3px 0 var(--ink), 5px 5px 0 oklch(0.65 0.24 35 / 45%); --wordmark-stroke: .7px;
   --signature-echo: oklch(.975 .006 90 / 62%);
-  --bubble-fill: oklch(.13 0 0 / 94%);
-  --bubble-rim: oklch(.38 .012 260 / 60%); --bubble-glow: oklch(.55 0 0 / 10%);
+  --bubble-fill: oklch(.45 0 0 / 82%);
+  --bubble-rim: oklch(.62 .008 260 / 34%); --bubble-glow: oklch(.6 0 0 / 7%);
   --steel-edge: oklch(.34 0 0 / 65%); --steel-face: oklch(.19 0 0 / 85%); --steel-shadow: oklch(.07 0 0 / 90%);
 }
 
@@ -288,7 +288,9 @@ a:focus-visible { outline: 2px solid var(--volt); outline-offset: 6px; }
 .hero-footer { animation: content-arrive .9s 1s ease-out both; }
 /* Portrait reveals once its pixels are ready; ember bubbles carry the heat without side lighting. */
 .hero-bubbles { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-.hero-bubbles i { position: absolute; width: 1.5px; height: 1.5px; border-radius: 50%; background: var(--bubble-fill); box-shadow: 0 0 0 .5px var(--bubble-rim), 0 0 2px var(--bubble-glow); animation: bubble-drift 6s linear infinite; will-change: transform, opacity; }
+.hero-bubbles i { position: absolute; width: 1px; height: 1px; border-radius: 50%; background: var(--bubble-fill); box-shadow: 0 0 0 .25px var(--bubble-rim), 0 0 1.5px var(--bubble-glow); animation: bubble-drift 6s linear infinite; will-change: transform, opacity; }
+.hero-bubbles i:nth-child(3n) { width: .75px; height: .75px; }
+.hero-bubbles i:nth-child(4n) { width: 1.25px; height: 1.25px; }
 .hero-bubbles i:nth-child(1) { left: 7%; top: 18%; animation-delay: -2s; }
 .hero-bubbles i:nth-child(2) { left: 24%; top: 9%; animation-delay: -5s; animation-duration: 9s; }
 .hero-bubbles i:nth-child(3) { left: 39%; top: 26%; animation-delay: -1s; }
