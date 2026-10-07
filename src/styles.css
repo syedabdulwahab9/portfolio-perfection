@@ -336,3 +336,7 @@ a:focus-visible { outline: 2px solid var(--volt); outline-offset: 6px; }
   .hero-dark-accent i:nth-child(2) { left: 40%; top: 0; height: 92%; }
   .hero-dark-accent i:nth-child(3) { left: 72%; top: 18%; height: 62%; opacity: .6; }
 }
+/* Keep hero text on a stable layer so it never re-rasterizes (blinks) when its entrance ends. */
+.hero-copy, .hero h1 span, .hero-intro, .topbar, .hero-footer { backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: translateZ(0); }
+@keyframes name-reveal { from { opacity: 0; transform: translate3d(0, 36px, 0) skewY(5deg); } to { opacity: 1; transform: translateZ(0); } }
+@keyframes content-arrive { from { opacity: 0; transform: translate3d(0, 18px, 0); } to { opacity: 1; transform: translateZ(0); } }
