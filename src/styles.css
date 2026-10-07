@@ -340,3 +340,9 @@ a:focus-visible { outline: 2px solid var(--volt); outline-offset: 6px; }
 .hero-copy, .hero h1 span, .hero-intro, .topbar, .hero-footer { backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: translateZ(0); }
 @keyframes name-reveal { from { opacity: 0; transform: translate3d(0, 36px, 0) skewY(5deg); } to { opacity: 1; transform: translateZ(0); } }
 @keyframes content-arrive { from { opacity: 0; transform: translate3d(0, 18px, 0); } to { opacity: 1; transform: translateZ(0); } }
+/* Opening sweep: a wide, soft dark-black flow (not a line) that glides over everything and dissolves. */
+.hero-heat { z-index: 5; }
+.hero-heat::after { display: none; }
+.hero-heat::before { top: 0; bottom: 0; width: 160%; background: linear-gradient(90deg, transparent 0%, oklch(0 0 0 / 35%) 14%, oklch(0 0 0 / 78%) 30%, oklch(0 0 0 / 92%) 50%, oklch(0 0 0 / 78%) 70%, oklch(0 0 0 / 35%) 86%, transparent 100%); -webkit-mask-image: none; mask-image: none; filter: blur(24px); transform: translate3d(65%, 0, 0); }
+.hero.is-ready .hero-heat::before { animation: dark-flow 2.2s cubic-bezier(.45,.05,.55,.95) both; }
+@keyframes dark-flow { 0% { transform: translate3d(65%, 0, 0); opacity: 0; } 15% { opacity: 1; } 80% { opacity: .9; } 100% { transform: translate3d(-105%, 0, 0); opacity: 0; } }
