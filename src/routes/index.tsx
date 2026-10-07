@@ -4,9 +4,12 @@ import { ArrowDown, ArrowUpRight, FileText, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CvDownload } from "@/components/cv-download";
 import portraitImg from "@/assets/wahab-reference.png";
+import portraitWebp from "@/assets/wahab-reference.webp";
 const portrait = portraitImg;
 import raahPreviewImg from "@/assets/raah-preview.png";
+import raahPreviewWebp from "@/assets/raah-preview.webp";
 import sawaaPreviewImg from "@/assets/sawaa-preview.png";
+import sawaaPreviewWebp from "@/assets/sawaa-preview.webp";
 
 const raahPreview = raahPreviewImg;
 const sawaaPreview = sawaaPreviewImg;
@@ -38,6 +41,7 @@ const projects = [
     tags: ["Product design", "Web development", "Islamic platform"],
     href: "https://raahehidayath.online",
     image: raahPreview,
+    imageWebp: raahPreviewWebp,
     className: "project-wide",
   },
   {
@@ -48,6 +52,7 @@ const projects = [
     tags: ["Creative direction", "Development", "Brand systems"],
     href: "https://sawaaenterprise.vercel.app/",
     image: sawaaPreview,
+    imageWebp: sawaaPreviewWebp,
     className: "project-offset",
   },
 ];
@@ -56,15 +61,27 @@ function Portfolio() {
   const portraitRef = useRef<HTMLImageElement>(null);
   useEffect(() => {
     const img = portraitRef.current;
-    if (img?.complete && img.naturalWidth > 0) img.classList.add("is-loaded");
-    const fallback = window.setTimeout(() => img?.classList.add("is-loaded"), 1200);
-    return () => window.clearTimeout(fallback);
+    const markReady = () => {
+      img?.classList.add("is-loaded");
+      img?.closest(".hero")?.classList.add("is-ready");
+    };
+    if (img?.complete && img.naturalWidth > 0) markReady();
+    img?.addEventListener("load", markReady);
+    const fallback = window.setTimeout(markReady, 900);
+    return () => {
+      window.clearTimeout(fallback);
+      img?.removeEventListener("load", markReady);
+    };
   }, []);
   return (
     <main className="portfolio-shell" id="top">
       <section className="hero" aria-label="Syed Abdul Wahab introduction">
         <div className="hero-bubbles" aria-hidden="true">{Array.from({ length: 24 }, (_, index) => <i key={index} />)}</div>
-        <img ref={portraitRef} className="hero-image" src={portrait} alt="Syed Abdul Wahab in a sharply lit editorial portrait" width={1145} height={768} fetchPriority="high" onLoad={(event) => event.currentTarget.classList.add("is-loaded")} />
+        <picture className="hero-image-frame">
+          <source type="image/webp" srcSet={portraitWebp} />
+          <img ref={portraitRef} className="hero-image" src={portrait} alt="Syed Abdul Wahab in a sharply lit editorial portrait" width={1145} height={768} fetchPriority="high" />
+        </picture>
+        <div className="hero-heat" aria-hidden="true" />
         <div className="topbar" aria-hidden="true" />
         <div className="hero-dark-accent" aria-hidden="true"><i /><i /><i /></div>
         <div className="hero-copy">
@@ -82,7 +99,10 @@ function Portfolio() {
           {projects.map((project) => (
             <article className={`project ${project.className}`} key={project.title}>
               <a href={project.href} target="_blank" rel="noreferrer" className="project-image-wrap" aria-label={`Open ${project.title}`}>
-                <img src={project.image} alt={`${project.title} website preview`} width={1280} height={1800} loading="lazy" />
+                <picture>
+                  <source type="image/webp" srcSet={project.imageWebp} />
+                  <img src={project.image} alt={`${project.title} website preview`} width={1280} height={1800} loading="lazy" />
+                </picture>
                 <span className="project-stamp">View live / {project.number} <ArrowUpRight /></span>
               </a>
               <div className="project-meta"><span>{project.number}</span><div><h3><a href={project.href} target="_blank" rel="noreferrer">{project.title}</a></h3><p>{project.subtitle}</p></div><p>{project.description}</p><ArrowUpRight /></div>
